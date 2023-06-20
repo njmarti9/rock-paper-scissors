@@ -37,12 +37,35 @@ function getPlayerChoice(){
 }
 
 function game(){
+    let wins = 0, losses = 0;
     for (let i = 0; i < 5; i++){
         let playerSelection = getPlayerChoice();
         let computerSelection = getComputerChoice();
 
         console.log("Player Choice: " + playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1))
         console.log("Computer Choice: " + computerSelection.charAt(0).toUpperCase() + computerSelection.slice(1))
-        console.log("Play round: " + playRound(playerSelection, computerSelection));
+        let round = playRound(playerSelection, computerSelection)
+        let decision = round.split(" ");
+        if (decision[1] === "Win!")
+        {
+            wins++;
+        }
+        else if (decision[1] === "Lose!")
+        {
+            losses++;
+        }
+        console.log("Play round: " + round);
+    }
+    if (wins > losses)
+    {
+        console.log("--------You Win The Game!--------")
+    }
+    else if (losses > wins)
+    {
+        console.log("--------You Lose The Game!--------")
+    }
+    else
+    {
+        console.log("--------It's A Tie Game!--------")
     }
 }
